@@ -57,11 +57,11 @@ export default function App() {
         <Timer
           focusSubject={focusSubject}
           onTimerEnd={() => {
-            addFocusHistoryWithState(focusSubject, STATUSES.COMPLETE);
+            addFocusHistoryWithStatus(focusSubject, STATUSES.COMPLETE);
             setFocusSubject(null);
           }}
           clearSubject={() => {
-            addFocusHistoryWithState(focusSubject, STATUSES.CANCELLED);
+            addFocusHistoryWithStatus(focusSubject, STATUSES.CANCELLED);
             setFocusSubject(null);
           }}
         />

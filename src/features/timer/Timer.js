@@ -73,7 +73,7 @@ export const Timer = ({ focusSubject, onTimerEnd, clearSubject }) => {
         )}
       </View>
       <View style={styles.clearSubject}>
-        <RoundedButton title="-" size={50} onPress={() => clearSubject()} />
+        <RoundedButton title="-" size={50} onPress={clearSubject} />
       </View>
     </View>
   );

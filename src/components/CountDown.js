@@ -13,6 +13,11 @@ const formatTime = (time) => (time < 10 ? `0${time}` : time);
 export const CountDown = ({ minutes = 20, isPaused, onProgress, onEnd }) => {
   useKeepAwake();
 
+  const [millis, setMillis] = useState(null);
+
+  const minute = Math.floor(millis / 1000 / 60) % 60;
+  const seconds = Math.floor(millis / 1000) % 60;
+
   const internal = React.useRef(null);
 
   const countDown = () => {
@@ -22,19 +27,18 @@ export const CountDown = ({ minutes = 20, isPaused, onProgress, onEnd }) => {
         return time;
       }
       const timeLeft = time - 1000;
+
       return timeLeft;
     });
   };
 
   useEffect(() => {
-    onProgress(timeLeft / minutesToMilli(minutes));
-    if (millis === 0) onEnd();
+    if (millis === 0) {
+      onEnd();
+    }
+    onProgress(millis / minutesToMilli(minutes));
+    console.log(millis);
   }, [millis]);
-
-  const [millis, setMillis] = useState(null);
-
-  const minute = Math.floor(millis / 1000 / 60) % 60;
-  const seconds = Math.floor(millis / 1000) % 60;
 
   useEffect(() => {
     if (isPaused) return;
